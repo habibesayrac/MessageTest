@@ -25,7 +25,7 @@ namespace MesajTest
 
         void gelenkutusu()
         {
-            SqlDataAdapter da1 = new SqlDataAdapter("Select * From TBLMESAJLAR where ALICI=" + numara, connection);
+            SqlDataAdapter da1 = new SqlDataAdapter("Select MESAJID,(AD +' '+ SOYAD) as 'GONDEREN',BASLIK,ICERIK from TBLMESAJLAR inner join TBLKISILER on TBLMESAJLAR.GONDEREN = TBLKISILER.NUMARA where ALICI=" + numara, connection);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
             dataGridView1.DataSource = dt1;
@@ -33,7 +33,7 @@ namespace MesajTest
         }
         void gidenkutusu()
         {
-            SqlDataAdapter da2 = new SqlDataAdapter("Select * From TBLMESAJLAR where GONDEREN=" + numara, connection);
+            SqlDataAdapter da2 = new SqlDataAdapter("Select MESAJID,(AD +' '+ SOYAD) as 'ALICI',BASLIK,ICERIK from TBLMESAJLAR inner join TBLKISILER on TBLMESAJLAR.ALICI = TBLKISILER.NUMARA where GONDEREN=" + numara, connection);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
             dataGridView2.DataSource = dt2;
